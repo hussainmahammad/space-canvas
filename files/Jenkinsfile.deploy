@@ -88,8 +88,6 @@ parameters {
                       -var="build_id=$BUILD_ID"
                     '''
                 }
-
-                sleep 5
             }
         }
 
