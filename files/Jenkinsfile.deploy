@@ -22,7 +22,7 @@ parameters {
                 echo "Prepare phase - Build ${BUILD_ID}"
                 cleanWs()
                 checkout scm
-                sleep 10
+                sleep 5
             }
         }
 
@@ -43,7 +43,7 @@ parameters {
                 zip -r ../process.zip . > /dev/null
                 '''
 
-                sleep 10
+                sleep 5
             }
         }
 
@@ -65,7 +65,7 @@ parameters {
                     '''
                 }
 
-                sleep 10
+                sleep 5
             }
         }
 
@@ -89,7 +89,7 @@ parameters {
                     '''
                 }
 
-                sleep 10
+                sleep 5
             }
         }
 
@@ -123,7 +123,6 @@ parameters {
                     '''
                 }
 
-                sleep 10
             }
         }
 
@@ -141,7 +140,7 @@ parameters {
                 echo "OBS_LOG_GROUP_ERROR=NA"
                 '''
 
-                sleep 10
+                sleep 5
             }
         }
     }
