@@ -112,7 +112,7 @@ parameters {
                             returnStdout: true
                         ).trim()
 
-                        // 🔥 NEW: GET API URL
+                        // ✅ NEW: get API URL
                         env.API_URL = sh(
                             script: "cd files/terraform && terraform output -raw api_url",
                             returnStdout: true
@@ -123,9 +123,7 @@ parameters {
                     set -e
                     export AWS_DEFAULT_REGION=$AWS_REGION
 
-                    echo "Injecting API URL into UI..."
-
-                    # 🔥 REPLACE PLACEHOLDER
+                    echo "Injecting API URL..."
                     sed -i "s|__API_URL__|$API_URL|g" app/ui/index.html
 
                     echo "Uploading UI to S3..."
