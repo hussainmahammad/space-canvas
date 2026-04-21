@@ -9,6 +9,9 @@ resource "aws_lambda_function" "upload" {
   filename         = "../../app/functions/upload.zip"
   source_code_hash = filebase64sha256("../../app/functions/upload.zip")
 
+  timeout      = 60
+  memory_size  = 256
+
   environment {
     variables = {
       BUCKET_NAME = aws_s3_bucket.files.bucket
@@ -31,6 +34,10 @@ resource "aws_lambda_function" "process" {
   layers = [
     aws_lambda_layer_version.pdf_layer.arn
   ]
+
+  # 🔥 FINAL FIX
+  timeout      = 60
+  memory_size  = 512
 
   environment {
     variables = {
