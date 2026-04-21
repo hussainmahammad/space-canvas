@@ -14,7 +14,7 @@ terraform {
   }
 
   backend "s3" {
-    bucket  = "hussainmahammad.online-tfstates"
+    bucket  = "hussainmahammad.online-tfstates1"
     key     = "pdf-tools/prod.tfstate"
     region  = "us-east-1"
     encrypt = true
