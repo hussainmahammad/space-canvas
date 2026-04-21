@@ -1,3 +1,4 @@
+```groovy
 pipeline {
     agent { label 'agent-b' }
 
@@ -110,11 +111,22 @@ parameters {
                             script: "cd files/terraform && terraform output -raw ui_url",
                             returnStdout: true
                         ).trim()
+
+                        // 🔥 NEW: GET API URL
+                        env.API_URL = sh(
+                            script: "cd files/terraform && terraform output -raw api_url",
+                            returnStdout: true
+                        ).trim()
                     }
 
                     sh '''
                     set -e
                     export AWS_DEFAULT_REGION=$AWS_REGION
+
+                    echo "Injecting API URL into UI..."
+
+                    # 🔥 REPLACE PLACEHOLDER
+                    sed -i "s|__API_URL__|$API_URL|g" app/ui/index.html
 
                     echo "Uploading UI to S3..."
                     aws s3 sync app/ui s3://$UI_BUCKET --delete
@@ -143,3 +155,4 @@ parameters {
         }
     }
 }
+```
